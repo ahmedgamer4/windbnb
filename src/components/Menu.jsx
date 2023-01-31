@@ -1,8 +1,11 @@
 import { useState, forwardRef, useImperativeHandle } from "react"
 import stays from '../../stays.json'
 
-
-let info = {} 
+let info = {
+  city: '',
+  adults: 0,
+  children: 0,
+} 
 
 const Location = ({ location, setLocation}) => {
   return (
@@ -26,7 +29,7 @@ const Menu = forwardRef((props, refs) => {
   const showWhenVisible = {display: visible ? '' : 'none'}
   const showWhenNotVisible = {display: visible ? 'none' : ''}
 
-  const toggleMenu = {transform: menuState ? 'translateY(0%)' : 'translateY(-200%)'}
+  const toggleMenu = {transform: menuState ? 'translate(-5%, 0%)' : 'translateY(-200%)'}
 
   const handleLocationChange = (e) => {
     e.preventDefault()
@@ -51,12 +54,12 @@ const Menu = forwardRef((props, refs) => {
 
   useImperativeHandle(refs, () => {
     return {
-      toggle
+      toggle,
     }
   })
   
   return (
-    <div className="bg-white w-screen absolute transition-transform z-20" style={toggleMenu}>
+    <div className="bg-white w-[99vw] absolute transition-transform z-20 py-16 shadow-xl mx-auto" style={toggleMenu}>
       <div className="w-11/12 mx-auto">
         <div className="flex flex-col rounded-md sm:flex-row w-full shadow-sm">
           <div className="sm:w-1/3">
