@@ -1,7 +1,3 @@
-import { useEffect, useRef, useState } from "react"
-import stays from '../../stays.json'
-import { info } from "./Menu"
-
 const Card = ({ img, superHost, type, rating, title, beds }) => {
   return (
     <div className="w-72 md:w-72 lg:w-80 h-56">
@@ -21,16 +17,7 @@ const Card = ({ img, superHost, type, rating, title, beds }) => {
   )
 }
 
-const Main = () => {
-  const allLocations = stays
-  const [locations, setLocations] = useState(allLocations)
-
-  useEffect(() => {
-    if (info.city.length > 0)
-      setLocations(locations.filter((l) => l.city.toLowerCase().includes(info.city)))
-  }, [])
-  
-
+const Main = ({ locations }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-16 mt-16">
       { locations.map((location) => <Card img={location.photo} superHost={location.superHost} type={location.type}
